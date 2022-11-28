@@ -51,14 +51,11 @@ commands:
             sudo ./aws/install
 
   install_ansible:
-    description : install_ansible
-    steps: 
-      - run:
-          name : install_ansible
+      steps:
+      - run: 
+          name : install ansible on cimg/python:3.10.0
           command: |
-            sudo apt-add-repository ppa:ansible/ansible
-            sudo apt update
-            sudo apt install ansible
+            python3 -m pip install --user ansible
 
   install-node:
     description: Install Node.js 13.8.0
@@ -217,7 +214,7 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: cimg/base:stable   
+      - image: cimg/python:3.11.0-node   
     steps:
       - checkout
       - install_aws_cli
